@@ -1,0 +1,19 @@
+.DS_Store
+
+# Local/generated artifacts
+tmp/
+output/
+
+# Build outputs
+build/
+cmake-build-*/
+*.o
+*.out
+*.dSYM/
+
+# Editor files
+.vscode/
+.idea/
+
+# Local notes that may contain private paths
+local/
