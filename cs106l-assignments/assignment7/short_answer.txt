@@ -1,0 +1,11 @@
+Unique Pointer
+--------------
+
+Q1. List one or two benefits of using RAII to manage memory instead manually calling `new` and `delete`.
+A1. Rall automatically release memory when an object goes out of the scope,reducing memory leaks,It also makes code easier to read by reducing manually memory management;
+Q2. When implementing move semantics for a `unique_ptr`, for example in the move constructor `unique_ptr(unique_ptr&& other)`, 
+A2. Both unique pointers would hold the same address,when 'other' is destroyed,it would delete the object,leaving the destination with a dangling pointer,Destroying the destination would then attempt to delete the same object, causing undefined behavior;
+Q3. This method of recursive deallocation through RAII works great for small lists,but may pose a problem for longer lists. Why? Hint: what is the limit for how "deep" a recursive function's call stack can grow?
+A3. The call stack has limited space.Destroying a long linked list revursively creates deeply nested destructor calls,which may cause a stack overflow;
+Q4. What does `std::move` do in this context?Why is it safe to use `std::move` and move semantics here?
+A4. std::move casts its argument to an rvalue reference,allowing move assignment to be selected.The move assignment operator transfers ownership and sets the source pointer to nullptr.This is safe because the destination now owns the node，so destroying the source does not delete the transferred node
